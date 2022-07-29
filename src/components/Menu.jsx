@@ -31,7 +31,19 @@ const Wrapper = styled.div`
 `;
 
 const Login = styled.div``;
-const Button = styled.button``;
+const Button = styled.button`
+    padding :  10px;
+    background-color: transparent;
+    border : 1px solid #3ea6ff;
+    color: #3ea6ff;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+    display : flex;
+    align-items: center;
+    gap: 10px;
+`;
 
 const Logo = styled.div`
     display: flex;
@@ -91,7 +103,10 @@ const Menu = () => {
                 <Hr />
                 <Login>
                     SIGN IN TO LIKE VIDEO, WRITE COMMENT
-                    <Button>SIGN IN</Button>
+                    <Button>
+                        <AccountCircleOutlinedIcon />
+                        SIGN IN
+                    </Button>
                 </Login>
                 <Item>
                 <LibraryMusicOutlinedIcon />

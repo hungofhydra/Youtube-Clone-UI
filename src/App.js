@@ -15,7 +15,11 @@ function App() {
       <Menu />
       <Main>
         <Navbar />
-        <Wrapper>Video cards</Wrapper>
+        <Wrapper>Video cards
+
+          
+        </Wrapper>
+
       </Main>
     </Container>
   );
