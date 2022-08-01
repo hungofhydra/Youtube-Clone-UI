@@ -1,74 +1,74 @@
 import React from 'react';
-import { Link} from "react-router-dom";
-import styled from "styled-components";
-import logo from '../images/logo.png';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import HomeIcon from '@mui/icons-material/Home';
-import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
-import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
-import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
-import LibraryMusicOutlinedIcon from "@mui/icons-material/LibraryMusicOutlined";
-import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
-import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOutlined";
-import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
+import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
+import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
+import LibraryMusicOutlinedIcon from '@mui/icons-material/LibraryMusicOutlined';
+import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
+import SportsBasketballOutlinedIcon from '@mui/icons-material/SportsBasketballOutlined';
+import MovieOutlinedIcon from '@mui/icons-material/MovieOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import LiveTvOutlinedIcon from '@mui/icons-material/LiveTvOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
+
+import logo from '../images/logo.png';
+
 const Container = styled.div`
-    flex:1;
-    background-color: ${({theme}) => theme.background};
-    height: 100vh;       
-    color:${({theme}) => theme.text};
-    font-size: 1rem;
-    
+  flex: 1;
+  background-color: ${({ theme }) => theme.background};
+  height: 100vh;
+  color: ${({ theme }) => theme.text};
+  font-size: 1rem;
 `;
 
 const Wrapper = styled.div`
-    padding: 10px 10px;
-    
+  padding: 10px 10px;
 `;
 
 const Login = styled.div``;
 const Button = styled.button`
-    padding :  10px;
-    background-color: transparent;
-    border : 1px solid #3ea6ff;
-    color: #3ea6ff;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 10px;
-    cursor: pointer;
-    display : flex;
-    align-items: center;
-    gap: 10px;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid #3ea6ff;
+  color: #3ea6ff;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Logo = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-weight: bold;
-    margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  margin-bottom: 25px;
 `;
 
 const Img = styled.img`
-    height: 25px;
+  height: 25px;
 `;
 
 const Item = styled.div`
-    display: flex;
-    align-items: center;
-    gap :20px;
-    cursor: pointer;
-    padding : 8.5px 0px;
-    
-    &:hover{
-        background-color: ${({theme}) => theme.soft};
-    }
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  padding: 8.5px 0px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.soft};
+  }
 `;
 
 const Hr = styled.hr`
@@ -76,88 +76,93 @@ const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-const Menu = ({dark, setDark}) => {
-    return (
-        <Container>
-            <Wrapper>
-                <Link to='/' style={{textDecoration:"none"}}>
-                    <Logo>
-                        <Img src={logo}/>
-                        Youtube
-                    </Logo>
-                </Link>
-                <Item>
-                    <HomeIcon />
-                    Home
-                </Item>
-                <Item>
-                <ExploreOutlinedIcon />
-                Explore
-                </Item>
-                <Item>
-                <SubscriptionsOutlinedIcon />
-                Subscriptions
-                </Item>
-                <Hr />
-                <Item>
-                <VideoLibraryOutlinedIcon />
-                Library
-                </Item>
-                <Item>
-                <HistoryOutlinedIcon />
-                History
-                </Item>
-                <Hr />
-                <Login>
-                    <Button>
-                        <AccountCircleOutlinedIcon />
-                        SIGN IN
-                    </Button>
-                </Login>
-                <Item>
-                    <LibraryMusicOutlinedIcon />
-                    Music
-                </Item>
-                <Item>
-                    <SportsBasketballOutlinedIcon />
-                    Sports
-                </Item>
-                <Item>
-                    <SportsEsportsOutlinedIcon />
-                    Gaming
-                </Item>
-                <Item>
-                    <MovieOutlinedIcon />
-                    Movies
-                </Item>
-                <Item>
-                    <ArticleOutlinedIcon />
-                    News
-                </Item>
-                <Item>
-                    <LiveTvOutlinedIcon />
-                    Live
-                </Item>
-                <Hr />
-                <Item>
-                    <SettingsOutlinedIcon />
-                    Settings
-                </Item>
-                <Item>
-                    <FlagOutlinedIcon />
-                    Report
-                </Item>
-                <Item>
-                    <HelpOutlineOutlinedIcon />
-                    Help
-                </Item>
-                <Item onClick={() => setDark(!dark)}>
-                    < SettingsBrightnessOutlinedIcon/>
-                    Theme
-                </Item>
-            </Wrapper>
-        </Container>
-    )
+function Menu(props) {
+  const { dark, setDark } = props;
+  return (
+    <Container>
+      <Wrapper>
+        <Link
+          style={{
+            textDecoration: 'none',
+          }}
+          to="/"
+        >
+          <Logo>
+            <Img src={logo} />
+            Youtube
+          </Logo>
+        </Link>
+        <Item>
+          <HomeIcon />
+          Home
+        </Item>
+        <Item>
+          <ExploreOutlinedIcon />
+          Explore
+        </Item>
+        <Item>
+          <SubscriptionsOutlinedIcon />
+          Subscriptions
+        </Item>
+        <Hr />
+        <Item>
+          <VideoLibraryOutlinedIcon />
+          Library
+        </Item>
+        <Item>
+          <HistoryOutlinedIcon />
+          History
+        </Item>
+        <Hr />
+        <Login>
+          <Button>
+            <AccountCircleOutlinedIcon />
+            SIGN IN
+          </Button>
+        </Login>
+        <Item>
+          <LibraryMusicOutlinedIcon />
+          Music
+        </Item>
+        <Item>
+          <SportsBasketballOutlinedIcon />
+          Sports
+        </Item>
+        <Item>
+          <SportsEsportsOutlinedIcon />
+          Gaming
+        </Item>
+        <Item>
+          <MovieOutlinedIcon />
+          Movies
+        </Item>
+        <Item>
+          <ArticleOutlinedIcon />
+          News
+        </Item>
+        <Item>
+          <LiveTvOutlinedIcon />
+          Live
+        </Item>
+        <Hr />
+        <Item>
+          <SettingsOutlinedIcon />
+          Settings
+        </Item>
+        <Item>
+          <FlagOutlinedIcon />
+          Report
+        </Item>
+        <Item>
+          <HelpOutlineOutlinedIcon />
+          Help
+        </Item>
+        <Item onClick={() => setDark(!dark)}>
+          <SettingsBrightnessOutlinedIcon />
+          Theme
+        </Item>
+      </Wrapper>
+    </Container>
+  );
 }
-
 export default Menu;

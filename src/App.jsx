@@ -1,12 +1,13 @@
-import styled, { ThemeProvider } from "styled-components";
-import Menu from "./components/Menu";
-import Navbar from "./components/Navbar";
-import React from "react";
-import Home from "./pages/Home";
-import Video from "./pages/Video";
-import { darkTheme, lightTheme } from "./utils/Theme";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled, { ThemeProvider } from 'styled-components';
 
+import React from 'react';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Menu from './components/Menu';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Video from './pages/Video';
+import { darkTheme, lightTheme } from './utils/Theme';
 
 const Container = styled.div`
   display: flex;
@@ -18,8 +19,8 @@ const Main = styled.div`
 const Wrapper = styled.div``;
 
 function App() {
-  const hello = "Hello World";
   const [dark, setDark] = React.useState(false);
+
   return (
     <ThemeProvider theme={dark ? darkTheme : lightTheme}>
       <Container>
@@ -30,9 +31,9 @@ function App() {
             <Wrapper>
               <Routes>
                 <Route path="/">
-                  <Route index element={<Home />} />
+                  <Route element={<Home />} index />
                   <Route path="video">
-                    <Route path=":id" element={<Video />} />
+                    <Route element={<Video />} path=":id" />
                   </Route>
                 </Route>
               </Routes>

@@ -1,28 +1,30 @@
-import React from 'react'
-import styled from "styled-components";
-import VideoCard from '../components/VideoCard'
+import React from 'react';
+import styled from 'styled-components';
+
+import VideoCard from '../components/VideoCard';
 
 const Container = styled.div`
-display : flex;
-justify-content : center;
-gap: 20px;
-flex-wrap : wrap;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 `;
-const Home = () => {
+
+function Home() {
   return (
     <Container>
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;
