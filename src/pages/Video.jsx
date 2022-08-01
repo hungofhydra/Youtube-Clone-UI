@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import Comments from "../components/Comments";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ShareIcon from '@mui/icons-material/Share';
@@ -154,6 +155,7 @@ const Video = () => {
                     SUBSCRIBE
                 </Subscribe>
             </Channel>
+            <Comments/>
         </Content>
         <Recommendation>
             Recommendation
