@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link} from "react-router-dom";
 import styled from "styled-components";
 import logo from '../images/logo.png';
 import HomeIcon from '@mui/icons-material/Home';
@@ -20,7 +21,7 @@ import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightne
 const Container = styled.div`
     flex:1;
     background-color: ${({theme}) => theme.background};
-    height: 100%;       
+    height: 100vh;       
     color:${({theme}) => theme.text};
     font-size: 1rem;
     
@@ -28,6 +29,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
     padding: 10px 10px;
+    
 `;
 
 const Login = styled.div``;
@@ -75,10 +77,12 @@ const Menu = ({dark, setDark}) => {
     return (
         <Container>
             <Wrapper>
-                <Logo>
-                    <Img src={logo}/>
-                    Youtube
-                </Logo>
+                <Link to='/' style={{textDecoration:"none"}}>
+                    <Logo>
+                        <Img src={logo}/>
+                        Youtube
+                    </Logo>
+                </Link>
                 <Item>
                     <HomeIcon />
                     Home
@@ -102,7 +106,6 @@ const Menu = ({dark, setDark}) => {
                 </Item>
                 <Hr />
                 <Login>
-                    SIGN IN TO LIKE VIDEO, WRITE COMMENT
                     <Button>
                         <AccountCircleOutlinedIcon />
                         SIGN IN
