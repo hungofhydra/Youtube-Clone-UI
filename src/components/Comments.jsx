@@ -17,7 +17,7 @@ const Input = styled.input`
     border:none;
     border-bottom: 1px solid ${({theme}) => theme.text};
     background-color: transparent;
-    outline: none;
+    outline: none;npx eslint yourfile.js
     padding : 5px;
     width : 100%;
 `;

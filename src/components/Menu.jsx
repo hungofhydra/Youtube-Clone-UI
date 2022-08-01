@@ -66,6 +66,9 @@ const Item = styled.div`
     cursor: pointer;
     padding : 8.5px 0px;
     
+    &:hover{
+        background-color: ${({theme}) => theme.soft};
+    }
 `;
 
 const Hr = styled.hr`
