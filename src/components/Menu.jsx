@@ -19,9 +19,9 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 const Container = styled.div`
     flex:1;
-    background-color: #202020;
+    background-color: ${({theme}) => theme.background};
     height: 100%;       
-    color:white;
+    color:${({theme}) => theme.text};
     font-size: 1rem;
     
 `;
@@ -71,7 +71,7 @@ const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-const Menu = () => {
+const Menu = ({dark, setDark}) => {
     return (
         <Container>
             <Wrapper>
@@ -109,41 +109,45 @@ const Menu = () => {
                     </Button>
                 </Login>
                 <Item>
-                <LibraryMusicOutlinedIcon />
-                Music
+                    <LibraryMusicOutlinedIcon />
+                    Music
                 </Item>
                 <Item>
-                <SportsBasketballOutlinedIcon />
-                Sports
+                    <SportsBasketballOutlinedIcon />
+                    Sports
                 </Item>
                 <Item>
-                <SportsEsportsOutlinedIcon />
-                Gaming
+                    <SportsEsportsOutlinedIcon />
+                    Gaming
                 </Item>
                 <Item>
-                <MovieOutlinedIcon />
-                Movies
+                    <MovieOutlinedIcon />
+                    Movies
                 </Item>
                 <Item>
-                <ArticleOutlinedIcon />
-                News
+                    <ArticleOutlinedIcon />
+                    News
                 </Item>
                 <Item>
-                <LiveTvOutlinedIcon />
-                Live
+                    <LiveTvOutlinedIcon />
+                    Live
                 </Item>
                 <Hr />
                 <Item>
-                <SettingsOutlinedIcon />
-                Settings
+                    <SettingsOutlinedIcon />
+                    Settings
                 </Item>
                 <Item>
-                <FlagOutlinedIcon />
-                Report
+                    <FlagOutlinedIcon />
+                    Report
                 </Item>
                 <Item>
-                <HelpOutlineOutlinedIcon />
-                Help
+                    <HelpOutlineOutlinedIcon />
+                    Help
+                </Item>
+                <Item onClick={() => setDark(!dark)}>
+                    < SettingsBrightnessOutlinedIcon/>
+                    Theme
                 </Item>
             </Wrapper>
         </Container>
