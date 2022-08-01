@@ -5,15 +5,17 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ShareIcon from '@mui/icons-material/Share';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import VideoCard from "../components/VideoCard";
 const Container = styled.div`
     display : flex;
     gap : 0px;
 `;
 const Content = styled.div`
-    flex : 6.5;
+    flex : 5.5;
 `;
 const Recommendation = styled.div`
     flex : 2;
+    margin-left : 20px;
 `;
 
 const Channel = styled.div`
@@ -158,7 +160,13 @@ const Video = () => {
             <Comments/>
         </Content>
         <Recommendation>
-            Recommendation
+            <VideoCard type="sm"/>
+            <VideoCard type="sm"/>
+            <VideoCard type="sm"/>
+            <VideoCard type="sm"/>
+            <VideoCard type="sm"/>
+            <VideoCard type="sm"/>
+            <VideoCard type="sm"/>
         </Recommendation>
     </Container>
   )
