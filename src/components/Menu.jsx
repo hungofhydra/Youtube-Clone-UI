@@ -114,12 +114,14 @@ function Menu(props) {
           History
         </Item>
         <Hr />
-        <Login>
-          <Button>
-            <AccountCircleOutlinedIcon />
-            SIGN IN
-          </Button>
-        </Login>
+        <Link to="/signin">
+          <Login>
+            <Button>
+              <AccountCircleOutlinedIcon />
+              SIGN IN
+            </Button>
+          </Login>
+        </Link>
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
