@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
+import axios from 'axios';
+
 
 const Container = styled.div`
   width: ${(props) => (props.type === 'sm' ? '360px' : '300px')};
@@ -50,17 +53,29 @@ const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-function VideoCard({ type }) {
+function VideoCard({ type, video }) {
+
+  const [ channel, setChannel ] = useState([]);
+
+  useEffect(() => {
+    const fetchChannel = async () => {
+      const res = await axios.get(`users/find/${video.userId}`);
+      setChannel(res.data.data);
+    }
+    fetchChannel();
+  }, [ video.userId ])
+
+
   return (
     <Link to="/video/test">
       <Container type={type}>
-        <Image type={type} src="https://assets.classicfm.com/2019/11/superman-violin-1553266007-view-0.jpg" />
+        <Image type={type} src={video.imgUrl} />
         <VideoDetails type={type}>
-          <ChannelImage type={type} />
+          <ChannelImage type={type} src={channel.img}/>
           <Texts>
-            <Title>Superman: The Musical</Title>
-            <ChannelName>The Musical</ChannelName>
-            <Info>0 views · 1 year ago</Info>
+            <Title>{video.title}</Title>
+            <ChannelName>{channel.name}</ChannelName>
+            <Info>{video.views} views | {format(video.createdAt)}</Info>
           </Texts>
         </VideoDetails>
       </Container>
