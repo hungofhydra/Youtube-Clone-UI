@@ -84,7 +84,7 @@ function Navbar() {
         {currentUser ? (
           <User>
             <VideoCallOutlinedIcon />
-            <AvatarUser />
+            <AvatarUser src={currentUser.img} />
             {currentUser.name}
           </User>
         ) : (
