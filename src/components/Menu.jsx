@@ -19,6 +19,7 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
 
 import logo from '../images/logo.png';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   flex: 1;
@@ -78,6 +79,9 @@ const Hr = styled.hr`
 
 function Menu(props) {
   const { dark, setDark } = props;
+
+  const currentUser = useSelector(state => state.user.currentUser);
+
   return (
     <Container>
       <Wrapper>
@@ -96,14 +100,19 @@ function Menu(props) {
           <HomeIcon />
           Home
         </Item>
-        <Item>
-          <ExploreOutlinedIcon />
-          Explore
-        </Item>
-        <Item>
-          <SubscriptionsOutlinedIcon />
-          Subscriptions
-        </Item>
+        <Link to="/trend" style={{ textDecoration: "none" }}>
+          <Item>
+            <ExploreOutlinedIcon />
+            Explore
+          </Item>
+        </Link>
+        <Link to="subscriptions" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <SubscriptionsOutlinedIcon />
+            Subscriptions
+          </Item>
+        </Link>
+       
         <Hr />
         <Item>
           <VideoLibraryOutlinedIcon />
@@ -114,14 +123,16 @@ function Menu(props) {
           History
         </Item>
         <Hr />
-        <Link to="/signin">
-          <Login>
-            <Button>
-              <AccountCircleOutlinedIcon />
-              SIGN IN
-            </Button>
-          </Login>
-        </Link>
+        {!currentUser && (
+          <Link to="/signin">
+            <Login>
+              <Button>
+                <AccountCircleOutlinedIcon />
+                SIGN IN
+              </Button>
+            </Login>
+          </Link>
+        )}
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
