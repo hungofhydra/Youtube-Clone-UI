@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import axios from 'axios';
 
 import { loginFailure, logout } from '../redux/userSlice';
+import Upload from "./Upload";
 
 const Container = styled.div`
   position: sticky;
@@ -74,6 +75,9 @@ const AvatarUser = styled.img`
 
 function Navbar() {
 
+  const navigate = useNavigate()
+  const [ open, setOpen ] = useState(false);
+  const [ q, setQ ] = useState("");
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.user.currentUser);
 
@@ -86,29 +90,33 @@ function Navbar() {
     } catch (error) {
       dispatch(loginFailure());
     }
-    
+
   }
 
   return (
-    <Container>
-      <Wrapper>
-        <Search>
-          <Input placeholder="Search" />
-          <SearchIcon />
-        </Search>
-        {currentUser ? (
-          <User>
-            <Button onClick={handleLogout}> Log out </Button>
-            <VideoCallOutlinedIcon />
-            <AvatarUser src={currentUser.img} />
-            {currentUser.name}
-          </User>
-        ) : (
-          <Link to="signin">
-            <Button>Signin</Button>
-          </Link>)}
-      </Wrapper>
-    </Container>
+    <>
+      <Container>
+        <Wrapper>
+          <Search>
+            <Input placeholder="Search" />
+            <SearchIcon />
+          </Search>
+          {currentUser ? (
+            <User>
+              <Button onClick={handleLogout}> Log out </Button>
+              <VideoCallOutlinedIcon onClick={() => setOpen(true)} />
+              <AvatarUser src={currentUser.img} />
+              {currentUser.name}
+            </User>
+          ) : (
+            <Link to="signin">
+              <Button>Signin</Button>
+            </Link>)}
+        </Wrapper>
+      </Container>
+
+      {open && <Upload setOpen={setOpen} />}
+    </>
   );
 }
 
