@@ -87,7 +87,6 @@ function SignIn() {
       dispatch(loginSuccess(res.data.data));
 
     } catch (error) {
-      console.log(error)
       dispatch(loginFailure());
     }
   }
@@ -96,15 +95,14 @@ function SignIn() {
     dispatch(loginStart());
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
+
         axios
-          .post("http://localhost:5000/api/v1/auth/google", {
+          .post("/auth/google", {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,
           })
           .then((res) => {
-            console.log(res)
             dispatch(loginSuccess(res.data));
             navigate("/")
           });
