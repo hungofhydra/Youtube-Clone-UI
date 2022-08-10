@@ -105,12 +105,6 @@ const Hr = styled.hr`
   margin: 15px;
   border: 0.2px solid ${({ theme }) => theme.text};
 `;
-const VideoFrame = styled.video`
-  max-height: 720px;
-  width: 100%;
-  object-fit: cover;
-`;
-
 
 function Video() {
 
@@ -158,7 +152,15 @@ function Video() {
     <Container>
       <Content>
         <VideoWrapper>
-          <VideoFrame src={currentVideo.videoUrl} />
+          <iframe
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            frameBorder={0}
+            height={650}
+            src={currentVideo.videoUrl}
+            title="Youtube"
+            width="100%"
+          />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
@@ -206,9 +208,9 @@ function Video() {
               : "SUBSCRIBE"}
           </Subscribe>
         </Channel>
-        <Comments />
+        <Comments videoId={currentVideo._id} />
       </Content>
-      <Recommendation>
+      <Recommendation tags={currentVideo.tags}>
         {/* <VideoCard type="sm" />
         <VideoCard type="sm" />
         <VideoCard type="sm" />

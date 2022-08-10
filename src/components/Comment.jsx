@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -33,20 +34,32 @@ const Date = styled.span`
 
 const Text = styled.span`
   font-size: 14px;
+  color: ${({ theme }) => theme.text};
 `;
 
-function Comment() {
+function Comment({ comment }) {
+
+  const [ channel, setChannel ] = useState({});
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const res = await axios.get(`/users/find/${comment.userId}`);
+      setChannel(res.data.data)
+    };
+    fetchComment();
+  }, [ comment.userId ]);
+
   return (
     <Container>
-      <Avatar src="something.png" />
+      <Avatar src={channel.img} />
       <Details>
         <Name>
-          Tan Hung
+          {channel.name}
           <Date>
             1 day agos
           </Date>
         </Name>
-        <Text>This is some comment I guess</Text>
+        <Text>{comment.desc}</Text>
       </Details>
     </Container>
   );
