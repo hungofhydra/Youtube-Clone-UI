@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
-import { Avatar } from '@mui/material';
+import axios from 'axios';
+
+import { loginFailure, logout } from '../redux/userSlice';
 
 const Container = styled.div`
   position: sticky;
@@ -71,8 +73,20 @@ const AvatarUser = styled.img`
 
 
 function Navbar() {
-
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.user.currentUser);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem('access_token');
+    try {
+      const res = await axios.get('/auth/logout')
+      dispatch(logout());
+    } catch (error) {
+      dispatch(loginFailure());
+    }
+    
+  }
 
   return (
     <Container>
@@ -83,6 +97,7 @@ function Navbar() {
         </Search>
         {currentUser ? (
           <User>
+            <Button onClick={handleLogout}> Log out </Button>
             <VideoCallOutlinedIcon />
             <AvatarUser src={currentUser.img} />
             {currentUser.name}

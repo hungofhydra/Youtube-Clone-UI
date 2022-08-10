@@ -20,7 +20,7 @@ const Main = styled.div`
 const Wrapper = styled.div``;
 
 function App() {
-  const [ dark, setDark ] = React.useState(false);
+  const [ dark, setDark ] = React.useState(true);
 
   return (
     <ThemeProvider theme={dark ? darkTheme : lightTheme}>
