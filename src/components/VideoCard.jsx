@@ -67,7 +67,7 @@ function VideoCard({ type, video }) {
 
 
   return (
-    <Link to="/video/test">
+    <Link to={`video/${video._id}`}  style={{textDecoration: "none"}}>
       <Container type={type}>
         <Image type={type} src={video.imgUrl} />
         <VideoDetails type={type}>
