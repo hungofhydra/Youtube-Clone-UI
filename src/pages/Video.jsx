@@ -14,6 +14,7 @@ import Comments from '../components/Comments';
 import VideoCard from '../components/VideoCard';
 import { useLocation } from 'react-router-dom';
 import { fetchSuccess, dislike, like } from '../redux/videoSlice';
+import { subscription } from "../redux/userSlice";
 
 const Container = styled.div`
   display: flex;
@@ -104,6 +105,12 @@ const Hr = styled.hr`
   margin: 15px;
   border: 0.2px solid ${({ theme }) => theme.text};
 `;
+const VideoFrame = styled.video`
+  max-height: 720px;
+  width: 100%;
+  object-fit: cover;
+`;
+
 
 function Video() {
 
@@ -122,6 +129,13 @@ function Video() {
   const handleDislike = async () => {
     await axios.put(`/users/dislike/${currentVideo._id}`);
     dispatch(dislike(currentUser._id));
+  };
+
+  const handleSub = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await axios.put(`/users/unsub/${channel._id}`)
+      : await axios.put(`/users/sub/${channel._id}`);
+    dispatch(subscription(channel._id));
   };
 
   useEffect(() => {
@@ -144,15 +158,7 @@ function Video() {
     <Container>
       <Content>
         <VideoWrapper>
-          <iframe
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            frameBorder={0}
-            height={650}
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="Youtube"
-            width="100%"
-          />
+          <VideoFrame src={currentVideo.videoUrl} />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
@@ -194,7 +200,11 @@ function Video() {
               <Description>{currentVideo.desc}</Description>
             </ChannelDetail>
           </ChannelInfo>
-          <Subscribe>SUBSCRIBE</Subscribe>
+          <Subscribe onClick={handleSub}>
+            {currentUser.subscribedUsers?.includes(channel._id)
+              ? "SUBSCRIBED"
+              : "SUBSCRIBE"}
+          </Subscribe>
         </Channel>
         <Comments />
       </Content>
