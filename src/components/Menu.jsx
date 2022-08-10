@@ -24,7 +24,7 @@ import { useSelector } from 'react-redux';
 const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.background};
-  height: 100vh;
+  height: 100;
   color: ${({ theme }) => theme.text};
   font-size: 1rem;
 `;
@@ -112,7 +112,7 @@ function Menu(props) {
             Subscriptions
           </Item>
         </Link>
-       
+
         <Hr />
         <Item>
           <VideoLibraryOutlinedIcon />

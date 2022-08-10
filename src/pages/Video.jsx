@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ShareIcon from '@mui/icons-material/Share';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import { useDispatch, useSelector } from 'react-redux'
+import { format } from 'timeago.js';
 
 import Comments from '../components/Comments';
 import VideoCard from '../components/VideoCard';
+import { useLocation } from 'react-router-dom';
+import { fetchSuccess } from '../redux/videoSlice';
 
 const Container = styled.div`
   display: flex;
@@ -64,7 +69,6 @@ const Subscribe = styled.button`
   height: max-content;
   padding: 10px 20px;
 `;
-
 const VideoWrapper = styled.div``;
 
 const Title = styled.h2`
@@ -94,13 +98,36 @@ const Button = styled.div`
   gap: 5px;
   cursor: pointer;
 `;
-
 const Hr = styled.hr`
   margin: 15px;
   border: 0.2px solid ${({ theme }) => theme.text};
 `;
 
 function Video() {
+
+  const currentUser = useSelector((state) => state.user.currentUser)
+  const currentVideo = useSelector((state) => state.video.currentVideo)
+
+  const dispatch = useDispatch();
+  const path = useLocation().pathname.split('/')[ 2 ];
+  const [ channel, setChannel ] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const videoRes = await axios.get(`/videos/find/${path}`);
+        const channelRes = await axios.get(`/users/find/${videoRes.data.data.userId}`);
+        setChannel(channelRes.data.data);
+        dispatch(fetchSuccess(videoRes.data.data));
+      } catch (error) {
+
+      }
+    }
+    fetchData();
+
+  }, [ path, dispatch ])
+
+
   return (
     <Container>
       <Content>
@@ -115,13 +142,13 @@ function Video() {
             width="100%"
           />
         </VideoWrapper>
-        <Title>Title</Title>
+        <Title>{currentVideo.title}</Title>
         <Details>
-          <Info>1,000,000 views - Jul 29, 2022</Info>
+          <Info>{currentVideo.views} views | {format(currentVideo.createdAt)} </Info>
           <Buttons>
             <Button>
               <ThumbUpIcon />
-              Like
+              {currentVideo.likes?.length}
             </Button>
             <Button>
               <ThumbDownIcon />
@@ -140,11 +167,11 @@ function Video() {
         <Hr />
         <Channel>
           <ChannelInfo>
-            <Image src="somethng.pnf" />
+            <Image src={channel.img} />
             <ChannelDetail>
-              <ChannelName>Tan Hung</ChannelName>
-              <ChannelCounter>200K Sunscribers</ChannelCounter>
-              <Description>Some description here I guess</Description>
+              <ChannelName>{channel.name}</ChannelName>
+              <ChannelCounter>{channel.subscribers}</ChannelCounter>
+              <Description>{currentVideo.desc}</Description>
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe>SUBSCRIBE</Subscribe>
@@ -152,13 +179,13 @@ function Video() {
         <Comments />
       </Content>
       <Recommendation>
+        {/* <VideoCard type="sm" />
         <VideoCard type="sm" />
         <VideoCard type="sm" />
         <VideoCard type="sm" />
         <VideoCard type="sm" />
         <VideoCard type="sm" />
-        <VideoCard type="sm" />
-        <VideoCard type="sm" />
+        <VideoCard type="sm" /> */}
       </Recommendation>
     </Container>
   );

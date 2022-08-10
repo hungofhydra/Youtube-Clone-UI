@@ -85,7 +85,7 @@ function SignIn() {
     try {
       const res = await axios.post("/auth/signin", { name, password })
       dispatch(loginSuccess(res.data.data));
-
+      navigate("/")
     } catch (error) {
       dispatch(loginFailure());
     }
@@ -103,7 +103,7 @@ function SignIn() {
             img: result.user.photoURL,
           })
           .then((res) => {
-            dispatch(loginSuccess(res.data));
+            dispatch(loginSuccess(res.data.data));
             navigate("/")
           });
       })
