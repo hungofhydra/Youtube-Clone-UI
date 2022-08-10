@@ -7,11 +7,13 @@ import ShareIcon from '@mui/icons-material/Share';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { useDispatch, useSelector } from 'react-redux'
 import { format } from 'timeago.js';
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 
 import Comments from '../components/Comments';
 import VideoCard from '../components/VideoCard';
 import { useLocation } from 'react-router-dom';
-import { fetchSuccess } from '../redux/videoSlice';
+import { fetchSuccess, dislike, like } from '../redux/videoSlice';
 
 const Container = styled.div`
   display: flex;
@@ -112,6 +114,16 @@ function Video() {
   const path = useLocation().pathname.split('/')[ 2 ];
   const [ channel, setChannel ] = useState({});
 
+  const handleLike = async () => {
+    await axios.put(`/users/like/${currentVideo._id}`);
+    dispatch(like(currentUser._id));
+  };
+
+  const handleDislike = async () => {
+    await axios.put(`/users/dislike/${currentVideo._id}`);
+    dispatch(dislike(currentUser._id));
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -146,12 +158,20 @@ function Video() {
         <Details>
           <Info>{currentVideo.views} views | {format(currentVideo.createdAt)} </Info>
           <Buttons>
-            <Button>
-              <ThumbUpIcon />
+            <Button onClick={handleLike}>
+              {currentVideo.likes?.includes(currentUser?._id) ? (
+                <ThumbUpIcon />
+              ) : (
+                <ThumbUpOutlinedIcon />
+              )}{" "}
               {currentVideo.likes?.length}
             </Button>
-            <Button>
-              <ThumbDownIcon />
+            <Button onClick={handleDislike}>
+              {currentVideo.dislikes?.includes(currentUser?._id) ? (
+                <ThumbDownIcon />
+              ) : (
+                <ThumbDownOffAltOutlinedIcon />
+              )}{" "}
               Dislike
             </Button>
             <Button>
