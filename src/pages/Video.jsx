@@ -15,6 +15,7 @@ import VideoCard from '../components/VideoCard';
 import { useLocation } from 'react-router-dom';
 import { fetchSuccess, dislike, like } from '../redux/videoSlice';
 import { subscription } from "../redux/userSlice";
+import Recommendation from "../components/Recommendation";
 
 const Container = styled.div`
   display: flex;
@@ -23,10 +24,7 @@ const Container = styled.div`
 const Content = styled.div`
   flex: 5.5;
 `;
-const Recommendation = styled.div`
-  flex: 2;
-  margin-left: 20px;
-`;
+
 
 const Channel = styled.div`
   display: flex;
@@ -208,15 +206,7 @@ function Video() {
         </Channel>
         <Comments videoId={currentVideo._id} />
       </Content>
-      <Recommendation tags={currentVideo.tags}>
-        {/* <VideoCard type="sm" />
-        <VideoCard type="sm" />
-        <VideoCard type="sm" />
-        <VideoCard type="sm" />
-        <VideoCard type="sm" />
-        <VideoCard type="sm" />
-        <VideoCard type="sm" /> */}
-      </Recommendation>
+      <Recommendation tags={currentVideo.tags} />
     </Container>
   );
 }
