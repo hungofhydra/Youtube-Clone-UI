@@ -66,13 +66,16 @@ function Comments({ videoId }) {
       videoId
     });
     setComments([ ...comments, res.data.data ]);
+    setNewComment('');
   }
 
   return (
     <Container>
       <NewComment>
         <Avatar src={currentUser.img} />
-        <Input placeholder="Add a comment..." onChange={e => setNewComment(e.target.value)} />
+        <Input placeholder="Add a comment..." onChange={e => {
+          setNewComment(e.target.value)
+        }} />
         <Button onClick={handleNewComment}>Send</Button>
       </NewComment>
 

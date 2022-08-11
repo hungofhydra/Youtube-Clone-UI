@@ -87,6 +87,7 @@ function Navbar() {
     try {
       const res = await axios.get('/auth/logout')
       dispatch(logout());
+      navigate('/');
     } catch (error) {
       dispatch(loginFailure());
     }
