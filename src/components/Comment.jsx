@@ -51,7 +51,7 @@ function Comment({ comment }) {
 
   return (
     <Container>
-      <Avatar src={channel.img} />
+      <Avatar src={channel.img} /> // images should have the alt prop
       <Details>
         <Name>
           {channel.name}
